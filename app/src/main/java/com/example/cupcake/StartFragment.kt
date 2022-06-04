@@ -1,4 +1,3 @@
-
 package com.example.cupcake
 
 import android.os.Bundle
@@ -49,7 +48,15 @@ class StartFragment : Fragment() {
      * Start an order with the desired quantity of cupcakes and navigate to the next screen.
      */
     fun orderCupcake(quantity: Int) {
-//        Toast.makeText(activity, "Ordered $quantity cupcake(s)", Toast.LENGTH_SHORT).show()
+
+        //Update quantity before moving to flavour
+        sharedViewModel.setQuantity(quantity)
+
+        //Set default flavour as vanilla
+        if (sharedViewModel.hasNoFlavourSet()) {
+            sharedViewModel.setFlavour(getString(R.string.vanilla))
+        }
+        //Toast.makeText(activity, "Ordered $quantity cupcake(s)", Toast.LENGTH_SHORT).show()
         findNavController().navigate(R.id.action_startFragment_to_flavorFragment)
     }
 
