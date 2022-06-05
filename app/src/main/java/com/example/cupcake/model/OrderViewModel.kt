@@ -1,11 +1,15 @@
 package com.example.cupcake.model
 
+import android.provider.CalendarContract
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import java.text.SimpleDateFormat
 import java.util.*
 
 class OrderViewModel : ViewModel() {
+
+    val dateOptions = getPickupOptions()
 
     //Added Properties
     //add backing fields
@@ -37,6 +41,21 @@ class OrderViewModel : ViewModel() {
     //check if the flavour is set or not
     fun hasNoFlavourSet(): Boolean {
         return _flavor.value.isNullOrEmpty()
+    }
+
+    //create and return the list of pickup dates.
+    private fun getPickupOptions(): List<String> {
+        val options = mutableListOf<String>()
+        //E -> Day name e.g Tue...
+        val formatter = SimpleDateFormat("E MM d", Locale.getDefault())
+        //Get calender instance
+        val calendar = Calendar.getInstance()
+        // Create a list of dates starting with the current date and the following 3 dates
+        repeat(4) {
+            options.add(formatter.format(calendar.time))
+            calendar.add(Calendar.DATE, 1)
+        }
+        return options
     }
 
 }
