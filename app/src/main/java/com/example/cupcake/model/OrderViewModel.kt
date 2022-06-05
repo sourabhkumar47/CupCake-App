@@ -13,16 +13,16 @@ class OrderViewModel : ViewModel() {
 
     //Added Properties
     //add backing fields
-    private val _quantity = MutableLiveData<Int>(0)
+    private val _quantity = MutableLiveData<Int>()
     val quantity: LiveData<Int> = _quantity
 
-    private val _flavor = MutableLiveData<String>("")
+    private val _flavor = MutableLiveData<String>()
     val flavor: LiveData<String> = _flavor
 
-    private val _date = MutableLiveData<String>("")
+    private val _date = MutableLiveData<String>()
     val date: LiveData<String> = _date
 
-    private val _price = MutableLiveData<Double>(0.0)
+    private val _price = MutableLiveData<Double>()
     val price: LiveData<Double> = _price
 
     //update the properties above, depending on the user's choice:
@@ -56,6 +56,18 @@ class OrderViewModel : ViewModel() {
             calendar.add(Calendar.DATE, 1)
         }
         return options
+    }
+
+    //to reset the MutableLiveData Properties
+    fun resetOrder(){
+        _quantity.value=0
+        _flavor.value=""
+        _date.value=dateOptions[0]
+        _price.value=0.0
+    }
+
+    init {
+        resetOrder()
     }
 
 }
