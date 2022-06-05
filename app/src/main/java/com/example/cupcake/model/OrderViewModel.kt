@@ -7,6 +7,8 @@ import androidx.lifecycle.ViewModel
 import java.text.SimpleDateFormat
 import java.util.*
 
+private const val PRICE_PER_CUPCAKE = 2.00
+
 class OrderViewModel : ViewModel() {
 
     val dateOptions = getPickupOptions()
@@ -28,6 +30,7 @@ class OrderViewModel : ViewModel() {
     //update the properties above, depending on the user's choice:
     fun setQuantity(numberCupCakes: Int) {
         _quantity.value = numberCupCakes
+        updatePrice()
     }
 
     fun setFlavor(desiredFlavour: String) {
@@ -59,15 +62,20 @@ class OrderViewModel : ViewModel() {
     }
 
     //to reset the MutableLiveData Properties
-    fun resetOrder(){
-        _quantity.value=0
-        _flavor.value=""
-        _date.value=dateOptions[0]
-        _price.value=0.0
+    fun resetOrder() {
+        _quantity.value = 0
+        _flavor.value = ""
+        _date.value = dateOptions[0]
+        _price.value = 0.0
     }
 
     init {
         resetOrder()
+    }
+
+    //calculate price
+    private fun updatePrice() {
+        _price.value = (quantity.value ?: 0) * PRICE_PER_CUPCAKE
     }
 
 }
