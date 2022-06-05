@@ -38,6 +38,8 @@ class PickupFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding?.apply {
+            //the app will be able to observe LiveData objects.
+            lifecycleOwner = viewLifecycleOwner
             //bind the view model instance with the shared view
             //model instance in the layout
             viewModel = sharedViewModel
