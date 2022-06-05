@@ -54,7 +54,7 @@ class StartFragment : Fragment() {
 
         //Set default flavour as vanilla
         if (sharedViewModel.hasNoFlavourSet()) {
-            sharedViewModel.setFlavour(getString(R.string.vanilla))
+            sharedViewModel.setFlavor(getString(R.string.vanilla))
         }
         //Toast.makeText(activity, "Ordered $quantity cupcake(s)", Toast.LENGTH_SHORT).show()
         findNavController().navigate(R.id.action_startFragment_to_flavorFragment)
