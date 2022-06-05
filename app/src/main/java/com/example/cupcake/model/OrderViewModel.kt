@@ -3,7 +3,9 @@ package com.example.cupcake.model
 import android.provider.CalendarContract
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -25,8 +27,13 @@ class OrderViewModel : ViewModel() {
     private val _date = MutableLiveData<String>()
     val date: LiveData<String> = _date
 
+//    private val _price = MutableLiveData<Double>()
+//    val price: LiveData<Double> = _price
+
     private val _price = MutableLiveData<Double>()
-    val price: LiveData<Double> = _price
+    val price: LiveData<String> = Transformations.map(_price) {
+        NumberFormat.getCurrencyInstance().format(it)
+    }
 
     //update the properties above, depending on the user's choice:
     fun setQuantity(numberCupCakes: Int) {
