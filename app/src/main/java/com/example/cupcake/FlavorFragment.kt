@@ -42,8 +42,10 @@ class FlavorFragment : Fragment() {
             //bind the view model instance with the shared view
             //model instance in the layout
             viewModel = sharedViewModel
-            nextButton.setOnClickListener { goToNextScreen() }
+//            nextButton.setOnClickListener { goToNextScreen() }
+            flavorFragment = this@FlavorFragment
         }
+
     }
 
     /**
