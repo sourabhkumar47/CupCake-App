@@ -67,6 +67,6 @@ class SummaryFragment : Fragment() {
 
     fun cancelOrder(){
         sharedViewModel.resetOrder()
-        findNavController().navigate(R.id.action_summaryFragment_to_startFragment2)
+        findNavController().navigate(R.id.action_summaryFragment_to_startFragment)
     }
 }
